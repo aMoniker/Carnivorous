@@ -1,6 +1,9 @@
 extends Area2D
 
+signal health_change(amt)
+
 export var health = 100
+export var health_per_hit = 23
 
 var max_speed = 5
 var bullet_spawn_dist = 50
@@ -17,11 +20,22 @@ var ouch1 = preload("res://assets/audio/ouch-1.wav")
 var ouch2 = preload("res://assets/audio/ouch-2.wav")
 var ouch_sounds = [ouch1, ouch2]
 
+var death4 = preload("res://assets/audio/death-4.wav")
+
+var dead = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
+func _process(_delta):
+	if health <= 0:
+		die()
+
 func _on_Controller_joy_move(joy_x, joy_y):
+	if dead:
+		return
+
 	var x = self.position.x
 	var y = self.position.y
 	var new_x = x + (joy_x * max_speed)
@@ -29,6 +43,9 @@ func _on_Controller_joy_move(joy_x, joy_y):
 	self.position = Vector2(new_x, new_y)
 
 func _on_Controller_joy_shoot(dir: Vector2):
+	if dead:
+		return
+
 	$Sprite.rotation = dir.angle()
 	if not $BulletTimer.is_stopped():
 		return
@@ -45,7 +62,6 @@ func _on_Player_body_entered(node: Node):
 		player_hit()
 		node.die(false)
 
-
 func shoot(spawn: Vector2, dir: Vector2):
 	var b = bullet.instance()
 	b.init(self.position + spawn, dir)
@@ -56,6 +72,8 @@ func shoot(spawn: Vector2, dir: Vector2):
 	$ShootSound.play()
 
 func player_hit():
+	health = max(0, health - health_per_hit)
+	emit_signal("health_change", health)
 	$HitSound.stream = ouch2
 	$HitSound.play()
 	$Tween.interpolate_property($Sprite, "modulate",
@@ -67,3 +85,19 @@ func player_hit():
 		Color(1, 0, 0, 1), Color(1, 1, 1, 1), 0.1,
 		Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
 	$Tween.start()
+
+func die():
+	if dead:
+		return
+	dead = true
+	self.collision_mask = 0
+	self.collision_layer = 0
+	$DeathSound.stream = death4;
+	$DeathSound.play()
+	$Tween.interpolate_property($Sprite, "modulate",
+		Color(1, 1, 1, 1), Color(1, 0, 0, 0), 1.0,
+		Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+	$Tween.start()
+	yield($DeathSound, "finished")
+	yield($Tween, "tween_completed")
+	queue_free()
