@@ -31,15 +31,16 @@ func _on_Enemy_body_entered(node: Node):
 	if node.is_in_group('bullets'):
 		die()
 
-func die():
+func die(play_sound = true):
 	self.collision_mask = 0
 	self.collision_layer = 0
 	$Tween.interpolate_property($Sprite, "modulate",
 	  Color(1, 1, 1, 1), Color(1, 0, 0, 0), 0.33,
 	  Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
-	var death_sound = death_sounds[randi() % death_sounds.size()]
-	play_sound(death_sound)
+	if (play_sound):
+		var death_sound = death_sounds[randi() % death_sounds.size()]
+		play_sound(death_sound)
 	dead = true
 
 func play_sound(sound: Resource):

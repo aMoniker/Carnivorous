@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 21.4266
 
-[node name="Enemy" type="RigidBody2D"]
+[node name="Enemy" type="RigidBody2D" groups=[
+"enemies",
+]]
 mass = 0.5
 gravity_scale = 0.0
 contacts_reported = 3
