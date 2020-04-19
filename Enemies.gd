@@ -12,7 +12,7 @@ func _on_SpawnTimer_timeout():
   add_child(mob)
   var direction = $MobPath/MobSpawnLocation.rotation + PI / 2
   mob.position = $MobPath/MobSpawnLocation.position
-  direction += rand_range(-PI / 4, PI / 4)
+  direction += rand_range(-PI / 8, PI / 8)
   mob.rotation = direction
   mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
   mob.linear_velocity = mob.linear_velocity.rotated(direction)

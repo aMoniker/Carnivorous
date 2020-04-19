@@ -1,8 +1,11 @@
 extends Area2D
 
 signal health_change(amt)
+signal immunity_change(amt)
 
 export var health = 100
+export var immunity = 0
+export var max_immunity = 100
 export var health_per_hit = 23
 
 var max_speed = 5
@@ -61,6 +64,11 @@ func _on_Player_body_entered(node: Node):
 	if node.is_in_group('enemies'):
 		player_hit()
 		node.die(false)
+
+func _on_player_killed_enemy(immunity_increase):
+	print('player killed enemy')
+	immunity += immunity_increase
+	emit_signal("immunity_change", immunity)
 
 func shoot(spawn: Vector2, dir: Vector2):
 	var b = bullet.instance()

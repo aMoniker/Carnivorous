@@ -1,30 +1,76 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/GUI/immunity_gauge_filled.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/GUI/gauge_outline.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/GUI/hp_gauge_filled.png" type="Texture" id=4]
 
-[node name="GUI" type="Control"]
+[node name="GUI" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -0.993011
-margin_bottom = -0.993042
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 14.8953
-margin_top = 17.8744
-margin_right = 54.8953
-margin_bottom = 57.8744
-text = "HP: "
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 974.0
+margin_bottom = 550.0
+size_flags_horizontal = 3
 
-[node name="HealthLabel" type="RichTextLabel" parent="."]
-margin_left = 40.7139
-margin_top = 17.8744
-margin_right = 80.7139
-margin_bottom = 78.8744
-text = "100"
+[node name="HealthControl" type="Control" parent="HBoxContainer"]
+margin_bottom = 550.0
+
+[node name="HealthProgress" type="TextureProgress" parent="HBoxContainer/HealthControl"]
+margin_left = 4.0
+margin_right = 272.0
+margin_bottom = 24.0
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/HealthControl"]
+margin_left = 221.694
+margin_top = 6.09052
+margin_right = 285.694
+margin_bottom = 46.0905
+text = "Health"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ImmunityControl" type="Control" parent="HBoxContainer"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 550.0
+
+[node name="ImmunityProgress" type="TextureProgress" parent="HBoxContainer/ImmunityControl"]
+margin_top = 24.0
+margin_right = 264.0
+margin_bottom = 574.0
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/ImmunityControl"]
+margin_left = 197.333
+margin_top = 30.4526
+margin_right = 261.333
+margin_bottom = 70.4526
+text = "Immunity
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthTween" type="Tween" parent="."]
+
+[node name="ImmunityTween" type="Tween" parent="."]
