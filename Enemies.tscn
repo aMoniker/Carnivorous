@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Enemies.gd" type="Script" id=1]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1024, 0, 0, 0, 0, 0, 1024, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 0 )
+"points": PoolVector2Array( 0, 0, 0, 0, 1088, 0, 0, 0, 0, 0, 1088, 600 )
 }
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 544, 32 )
 
 [node name="Enemies" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,7 +17,28 @@ script = ExtResource( 1 )
 curve = SubResource( 1 )
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2( 1088, 0 )
+rotation = 1.5708
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2( 128, 0 )
+collision_layer = 2
+collision_mask = 2
+constant_angular_velocity = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2( 1120, -32 )
+shape = SubResource( 2 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+constant_angular_velocity = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 1248, 632 )
+shape = SubResource( 2 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
