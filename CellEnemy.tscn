@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.1241
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "BounceOut"
 length = 2.0
 tracks/0/type = "value"
@@ -22,8 +22,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Pulse"
+[sub_resource type="Animation" id=3]
 length = 3.0
 loop = true
 tracks/0/type = "value"
@@ -46,7 +45,7 @@ collision_layer = 3
 collision_mask = 3
 mass = 5.0
 gravity_scale = 0.0
-contacts_reported = 3
+contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
 min_speed = 333
@@ -71,8 +70,8 @@ visible = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Pulse"
 playback_speed = 3.0
-anims/BounceOut = SubResource( 3 )
-anims/Pulse = SubResource( 2 )
+anims/BounceOut = SubResource( 2 )
+anims/Pulse = SubResource( 3 )
 
 [node name="DeathTimer" type="Timer" parent="."]
 one_shot = true

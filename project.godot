@@ -8,16 +8,21 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Enemy.gd"
+} ]
 _global_script_class_icons={
-
+"Enemy": ""
 }
 
 [application]
 
 config/name="Carnivorous"
 run/main_scene="res://StartScreen.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/images/player.png"
 
 [display]
 
@@ -26,4 +31,6 @@ window/stretch/aspect="keep"
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 environment/default_environment="res://default_env.tres"

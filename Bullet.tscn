@@ -8,7 +8,7 @@
 ]]
 mass = 0.01
 gravity_scale = 0.0
-contacts_reported = 3
+contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
 
