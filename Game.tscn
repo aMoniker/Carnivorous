@@ -94,9 +94,9 @@ __meta__ = {
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -102.0
+margin_top = -174.0
 margin_right = 12.0
-margin_bottom = -43.0
+margin_bottom = -115.0
 custom_fonts/font = SubResource( 3 )
 text = "YOU WIN!"
 align = 1
@@ -108,11 +108,12 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -322.0
+margin_top = -370.0
 margin_right = 12.0
-margin_bottom = -259.0
+margin_bottom = -249.0
 custom_fonts/font = SubResource( 3 )
-text = "Your Organism has developed Immunity!"
+text = "Thanks to your Heroic Efforts,
+Your Organism has developed Immunity!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -122,11 +123,12 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -234.0
+margin_top = -202.0
 margin_right = 12.0
-margin_bottom = -171.0
+margin_bottom = -111.0
 custom_fonts/font = SubResource( 4 )
-text = "Press any key to play again"
+text = "Now make like a cell and split!
+(or press any key to play again)"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

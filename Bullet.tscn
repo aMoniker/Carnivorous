@@ -6,6 +6,7 @@
 [node name="Bullet" type="RigidBody2D" groups=[
 "bullets",
 ]]
+mass = 0.01
 gravity_scale = 0.0
 contacts_reported = 3
 contact_monitor = true
