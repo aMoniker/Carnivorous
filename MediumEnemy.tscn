@@ -35,6 +35,9 @@ visible = false
 [node name="Sound" type="AudioStreamPlayer" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
-[connection signal="finished" from="Sound" to="." method="_on_Sound_finished"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

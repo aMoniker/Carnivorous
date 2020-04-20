@@ -3,12 +3,14 @@ extends Node2D
 const WeakEnemy = preload("res://WeakEnemy.tscn")
 const MediumEnemy = preload("res://MediumEnemy.tscn")
 const HardEnemy = preload("res://HardEnemy.tscn")
+const CellEnemy = preload("res://CellEnemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
   $WeakEnemyTimer.start()
   $MediumEnemyTimer.start()
   $HardEnemyTimer.start()
+  $CellEnemyTimer.start()
 
 func spawnEnemy(Mob: PackedScene):
   $MobPath/MobSpawnLocation.offset = randi()
@@ -29,3 +31,6 @@ func _on_MediumEnemyTimer_timeout():
 
 func _on_HardEnemyTimer_timeout():
   spawnEnemy(HardEnemy)
+
+func _on_CellEnemyTimer_timeout():
+  spawnEnemy(CellEnemy)

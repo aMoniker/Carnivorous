@@ -20,12 +20,10 @@ var rot_speed = 1
 const rot_speed_max = 0.11
 const rot_speed_min = 1
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rot_dir = [-1, 1][randi() % 2]
 	rot_speed = rand_range(rot_speed_min, rot_speed_max)
-	# $Sprite.modulate = Color.from_hsv(randf(), 1.0, 1.0, 1.0)
 
 func _process(delta):
 	$Sprite.rotation += PI * 2 * delta * rot_dir * rot_speed
@@ -51,12 +49,11 @@ func die(play_sound = true):
 	var player = get_node("../../Player")
 	self.connect("killed_enemy", player, "_on_player_killed_enemy")
 	emit_signal("killed_enemy", immunity_value)
+	$DeathTimer.start()
 
 func play_sound(sound: Resource):
 	$Sound.stream = sound
 	$Sound.play()
 
-# hacky
-func _on_Sound_finished():
-	if dead:
-		queue_free()
+func _on_DeathTimer_timeout():
+	queue_free();

@@ -40,13 +40,17 @@ position = Vector2( 1248, 632 )
 shape = SubResource( 2 )
 
 [node name="WeakEnemyTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.15
 
 [node name="MediumEnemyTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 
 [node name="HardEnemyTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="CellEnemyTimer" type="Timer" parent="."]
+wait_time = 5.0
 [connection signal="timeout" from="WeakEnemyTimer" to="." method="_on_WeakEnemyTimer_timeout"]
 [connection signal="timeout" from="MediumEnemyTimer" to="." method="_on_MediumEnemyTimer_timeout"]
 [connection signal="timeout" from="HardEnemyTimer" to="." method="_on_HardEnemyTimer_timeout"]
+[connection signal="timeout" from="CellEnemyTimer" to="." method="_on_CellEnemyTimer_timeout"]
