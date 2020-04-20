@@ -1,5 +1,7 @@
 extends "res://Enemy.gd"
 
+signal healed_cell()
+
 export var hits_to_heal = 3
 
 var hit1 = preload("res://assets/audio/hit-1.wav")
@@ -36,3 +38,5 @@ func heal(play_sound = true):
 	var player = get_node("../../Player")
 	self.connect("killed_enemy", player, "_on_player_killed_enemy")
 	emit_signal("killed_enemy", immunity_value)
+	self.connect("healed_cell", player, "_on_player_healed_cell")
+	emit_signal("healed_cell")

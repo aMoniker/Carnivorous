@@ -4,6 +4,7 @@ signal health_change(amt)
 signal immunity_change(amt)
 signal player_died()
 signal player_won()
+signal printer_mode(active)
 
 export var health = 100
 export var immunity = 0
@@ -32,10 +33,12 @@ var death4 = preload("res://assets/audio/death-4.wav")
 
 var dead = false
 var won = false
+var bullet_wait_time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport().size
+	bullet_wait_time = $BulletTimer.wait_time
 
 func _process(_delta):
 	if health <= 0:
@@ -76,6 +79,15 @@ func _on_Player_body_entered(node: Node):
 func _on_player_killed_enemy(immunity_increase):
 	immunity += immunity_increase
 	emit_signal("immunity_change", immunity)
+
+func _on_player_healed_cell():
+	$BulletTimer.wait_time = 0.1
+	emit_signal("printer_mode", true)
+	$PrinterTimer.start()
+
+func _on_PrinterTimer_timeout():
+	$BulletTimer.wait_time = bullet_wait_time
+	emit_signal("printer_mode", false)
 
 func shoot(spawn: Vector2, dir: Vector2):
 	var b = bullet.instance()

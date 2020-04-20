@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/fonts/Roboto_Mono/RobotoMono-Medium.ttf" type="DynamicFontData" id=2]
@@ -25,6 +25,23 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=4]
 size = 33
 font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "FlashText"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Game" type="Node"]
 script = ExtResource( 9 )
@@ -133,5 +150,22 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PrinterLabel" type="Label" parent="."]
+visible = false
+margin_left = 65.0483
+margin_top = 77.6966
+margin_right = 260.048
+margin_bottom = 91.6966
+text = "ANTIBODY PRINTER GO BRRRR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PrinterLabel"]
+autoplay = "FlashText"
+playback_speed = 3.0
+anims/FlashText = SubResource( 5 )
 [connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
 [connection signal="player_won" from="Player" to="." method="_on_Player_player_won"]
+[connection signal="printer_mode" from="Player" to="." method="_on_Player_printer_mode"]

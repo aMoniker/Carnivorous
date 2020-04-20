@@ -3,11 +3,6 @@ extends Node
 var game_over = false
 var game_won = false
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -32,10 +27,16 @@ func _on_Player_player_died():
 	$GameOver.visible = true
 	$RestartGame.visible = true
 	game_over = true
+	$PrinterLabel.visible = false
 
 func _on_Player_player_won():
 	$Win.visible = true
 	game_won = true
+
+func _on_Player_printer_mode(active: bool):
+	if (game_over):
+		pass
+	$PrinterLabel.visible = active
 
 func start_game():
 	get_tree().change_scene("res://Game.tscn")

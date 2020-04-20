@@ -22,6 +22,10 @@ script = ExtResource( 1 )
 [node name="BulletTimer" type="Timer" parent="."]
 wait_time = 0.33
 
+[node name="PrinterTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -10.0
@@ -42,3 +46,4 @@ shape = SubResource( 1 )
 [connection signal="joy_move" from="Controller" to="." method="_on_Controller_joy_move"]
 [connection signal="joy_shoot" from="Controller" to="." method="_on_Controller_joy_shoot"]
 [connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
+[connection signal="timeout" from="PrinterTimer" to="." method="_on_PrinterTimer_timeout"]
