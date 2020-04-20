@@ -11,6 +11,11 @@
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
 
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
+autoplay = true
+
 [node name="BG" type="Sprite" parent="."]
 position = Vector2( 1036.01, 298.944 )
 scale = Vector2( 3.99207, 3.97417 )
@@ -26,7 +31,10 @@ position = Vector2( 200, 300 )
 
 [node name="GUI" parent="." instance=ExtResource( 4 )]
 
-[node name="BGMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-volume_db = -20.0
-autoplay = true
+[node name="Cursor" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 599.0
+mouse_default_cursor_shape = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
