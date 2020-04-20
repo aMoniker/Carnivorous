@@ -1,9 +1,10 @@
 extends RigidBody2D
+class_name Enemy
 
 signal killed_enemy(immunity_value)
 
 export var min_speed = 100
-export var max_speed = 1000
+export var max_speed = 100
 export var immunity_value = 0.1
 
 var death1 = preload("res://assets/audio/death-1.wav")

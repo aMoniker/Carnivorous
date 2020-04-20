@@ -1,12 +1,16 @@
 extends Node2D
 
-var Mob = preload("res://Enemy.tscn")
+const WeakEnemy = preload("res://WeakEnemy.tscn")
+const MediumEnemy = preload("res://MediumEnemy.tscn")
+const HardEnemy = preload("res://HardEnemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$SpawnTimer.start()
+  $WeakEnemyTimer.start()
+  $MediumEnemyTimer.start()
+  $HardEnemyTimer.start()
 
-func _on_SpawnTimer_timeout():
+func spawnEnemy(Mob: PackedScene):
   $MobPath/MobSpawnLocation.offset = randi()
   var mob = Mob.instance()
   add_child(mob)
@@ -16,3 +20,12 @@ func _on_SpawnTimer_timeout():
   mob.rotation = direction
   mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
   mob.linear_velocity = mob.linear_velocity.rotated(direction)
+
+func _on_WeakEnemyTimer_timeout():
+  spawnEnemy(WeakEnemy)
+
+func _on_MediumEnemyTimer_timeout():
+  spawnEnemy(MediumEnemy)
+
+func _on_HardEnemyTimer_timeout():
+  spawnEnemy(HardEnemy)
