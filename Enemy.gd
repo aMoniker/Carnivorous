@@ -4,6 +4,7 @@ signal killed_enemy(immunity_value)
 
 export var min_speed = 100
 export var max_speed = 1000
+export var immunity_value = 0.1
 
 var death1 = preload("res://assets/audio/death-1.wav")
 var death2 = preload("res://assets/audio/death-2.wav")
@@ -18,7 +19,6 @@ var rot_speed = 1
 const rot_speed_max = 0.11
 const rot_speed_min = 1
 
-var immunity_value = 0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

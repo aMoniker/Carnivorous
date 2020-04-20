@@ -16,6 +16,7 @@ gravity_scale = 0.0
 contacts_reported = 3
 contact_monitor = true
 script = ExtResource( 2 )
+immunity_value = 0.1
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

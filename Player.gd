@@ -3,6 +3,7 @@ extends Area2D
 signal health_change(amt)
 signal immunity_change(amt)
 signal player_died()
+signal player_won()
 
 export var health = 100
 export var immunity = 0
@@ -27,6 +28,7 @@ var ouch_sounds = [ouch1, ouch2]
 var death4 = preload("res://assets/audio/death-4.wav")
 
 var dead = false
+var won = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,9 +37,11 @@ func _ready():
 func _process(_delta):
 	if health <= 0:
 		die()
+	if immunity >= max_immunity:
+		win()
 
 func _on_Controller_joy_move(joy_x, joy_y):
-	if dead:
+	if dead or won:
 		return
 
 	var x = self.position.x
@@ -47,7 +51,7 @@ func _on_Controller_joy_move(joy_x, joy_y):
 	self.position = Vector2(new_x, new_y)
 
 func _on_Controller_joy_shoot(dir: Vector2):
-	if dead:
+	if dead or won:
 		return
 
 	$Sprite.rotation = dir.angle()
@@ -67,7 +71,6 @@ func _on_Player_body_entered(node: Node):
 		node.die(false)
 
 func _on_player_killed_enemy(immunity_increase):
-	print('player killed enemy')
 	immunity += immunity_increase
 	emit_signal("immunity_change", immunity)
 
@@ -111,3 +114,11 @@ func die():
 	yield($Tween, "tween_completed")
 	emit_signal("player_died")
 	queue_free()
+
+func win():
+	if won:
+		return
+	won = true
+	self.collision_mask = 0
+	self.collision_layer = 0
+	emit_signal("player_won")

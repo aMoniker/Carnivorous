@@ -15,11 +15,10 @@
 [ext_resource path="res://assets/fonts/Roboto_Mono/RobotoMono-Italic.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://assets/fonts/Roboto_Mono/RobotoMono-BoldItalic.ttf" type="DynamicFontData" id=14]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Letters"
+[sub_resource type="Animation" id=2]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("C:rect_position")
@@ -391,7 +390,7 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -517,7 +516,7 @@ __meta__ = {
 }
 
 [node name="LetterAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Letters = SubResource( 1 )
+anims/Letters = SubResource( 2 )
 
 [node name="StartTimer" type="Timer" parent="."]
 one_shot = true
@@ -562,7 +561,7 @@ align = 1
 modulate = Color( 0.00298309, 0.00298309, 0.00298309, 1 )
 margin_top = 114.0
 margin_right = 900.0
-margin_bottom = 148.0
+margin_bottom = 114.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/bold_italics_font = SubResource( 4 )
