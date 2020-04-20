@@ -10,6 +10,9 @@ export var immunity = 0
 export var max_immunity = 100
 export var health_per_hit = 23
 
+var screen_size = null
+var margin = 32
+
 var max_speed = 5
 var bullet_spawn_dist = 50
 const bullet = preload("res://Bullet.tscn")
@@ -32,7 +35,7 @@ var won = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	screen_size = get_viewport().size
 
 func _process(_delta):
 	if health <= 0:
@@ -44,8 +47,8 @@ func _on_Controller_joy_move(joy_x, joy_y):
 	if dead or won:
 		return
 
-	var x = self.position.x
-	var y = self.position.y
+	var x = min(max(self.position.x, margin), screen_size.x - margin)
+	var y = min(max(self.position.y, margin), screen_size.y - margin)
 	var new_x = x + (joy_x * max_speed)
 	var new_y = y + (joy_y * max_speed)
 	self.position = Vector2(new_x, new_y)
