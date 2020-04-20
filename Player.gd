@@ -2,6 +2,7 @@ extends Area2D
 
 signal health_change(amt)
 signal immunity_change(amt)
+signal player_died()
 
 export var health = 100
 export var immunity = 0
@@ -108,4 +109,5 @@ func die():
 	$Tween.start()
 	yield($DeathSound, "finished")
 	yield($Tween, "tween_completed")
+	emit_signal("player_died")
 	queue_free()

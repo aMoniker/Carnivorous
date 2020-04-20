@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -7,6 +7,15 @@
 [ext_resource path="res://assets/audio/dungeon_forest.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=6]
 [ext_resource path="res://BG.gd" type="Script" id=7]
+[ext_resource path="res://assets/fonts/Roboto_Mono/RobotoMono-Bold.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = ExtResource( 8 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -38,3 +47,29 @@ mouse_default_cursor_shape = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartGame" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 154.0
+custom_fonts/font = SubResource( 2 )
+text = "Press any key to play again"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]

@@ -10,8 +10,6 @@ func _input(event):
 		or event is InputEventJoypadButton
 		or event is InputEventMouseButton
 	):
-		print(event)
-		print(event.pressed)
 		if event.pressed:
 			start_game()
 
